@@ -1,1 +1,18 @@
-<p>product-details works!</p>
+<div *ngIf="product">
+    <h3>{{product.name}}</h3>
+    <h4>{{product.price | currency}}</h4>
+    <p>{{product.description}}</p>
+
+    <button 
+        *ngIf="product.price != null"
+        type="button" 
+        class="btn btn-primary" 
+        (click)="addToCart(product)">
+        Add to Cart
+    </button>
+
+    <app-product-alerts
+        [product]="product"
+        (onNotify)="onNotify()">
+    </app-product-alerts>
+</div>

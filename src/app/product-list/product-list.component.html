@@ -1,24 +1,28 @@
-<h2>Products</h2>
+<h2>All of products</h2>
 
 <div *ngFor="let product of products">
+    <hr>
     <h3 [title]="product.name + 'details'">
-        <a [routerLink]="['/products', product.id]" class="pe-auto text-decoration-none">
+        <a [routerLink]="['/product/', product.id]" class="pe-auto text-decoration-none">
             {{product.name}}
         </a>
     </h3>
+
+    <h4>{{product.price | currency}}</h4>
 
     <p *ngIf="product.description !== undefined">
         Description: {{product.description}}
     </p>
 
-    <button (click)="share()" type="button" class="btn btn-primary">
+    <button (click)="share()" type="button" class="btn btn-primary mr">
         Share
     </button>
     
     <app-product-alerts 
         [product]="product"
         (notify)="onNotify()"
-    >  
-    </app-product-alerts>
+    ></app-product-alerts>
+
     <router-outlet></router-outlet>
 </div>
+<hr>
